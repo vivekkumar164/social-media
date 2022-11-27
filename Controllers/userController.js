@@ -103,7 +103,7 @@ export const unFollowUser = async (req,res)=>{
                 res.status(403).json("User is  not followed by you any more!")
             }
         } catch (error) {
-            es.status(500).json(error);
+            res.status(500).json(error);
         }
     }
 }
