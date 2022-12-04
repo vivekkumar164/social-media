@@ -6,9 +6,14 @@ import cors from 'cors';
 import AuthRoute from './Routes/AuthRoute.js';
 import userRoute from './Routes/userRoute.js'
 import postRoute from './Routes/postRoute.js'
-
+import UploadRoute from './Routes/UploadRoute.js'
 
 const app = express();
+
+//to serve images for public
+
+app.use(express.static('public'));
+app.use('/images',express.static("images"))
 
 
 //Middlewares
@@ -31,4 +36,5 @@ mongoose.connect(process.env.MONGO_DB,{useNewUrlParser:true,useUnifiedTopology:t
     //usage of routes
     app.use('/auth',AuthRoute);
     app.use('/users',userRoute);
-    app.use('/posts',postRoute);
+    app.use('/post',postRoute);
+    app.use('/upload',UploadRoute);
