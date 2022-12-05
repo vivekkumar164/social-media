@@ -3,10 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 
 
-
-
-
-
 //registering new user
 export const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
@@ -22,7 +18,7 @@ export const registerUser = async (req, res) => {
         const user = await newUser.save();
 
         const token = jwt.sign({
-            username: user.username, id: user._id
+            username: user.userName, id: user._id
         }, process.env.JWT_KEY, { expiresIn: '1h' })
 
         res.status(200).json({ user, token });
